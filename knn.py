@@ -1,4 +1,3 @@
-
 import numpy as np
 from collections import Counter
 import matplotlib.pyplot as plt 
@@ -58,9 +57,8 @@ def plot_accuracy_k(K_values,data_train,labels_train,data_test,labels_test):
 
 if __name__ == "__main__":
 
-    
+    ## Les ressources locale de calcul me permettent de traiter un seul batch à la fois.le choix de split 0.01 1% du batch sera considéré parmi les données de test (99% du batch sera utilisé pour l'entrainement), ce choix a été forcé par les calculs. En choississant un taux supérieur à 1%, les ressources de calcul local ne peuvent plus subvenir aux besoins de calcul notement en terme de mémoire.  
     data, labels = read_cifar("data/cifar-10-batches-py")
-    ## le choix de split 0.01 1% du batch sera considéré parmi les données de test, ce choix a été forcé par les calculs. En choississant un taux supérieur à 1%, les ressources de calcul local ne peuvent plus subvenir aux besoins de calcul notement en terme de mémoire.  
     data_train, data_test, labels_train, labels_test = split_dataset(data,labels,split=0.01)
     K_values = [i for i in range(1,21)]
     plot_accuracy_k(K_values,data_train,labels_train,data_test,labels_test)
